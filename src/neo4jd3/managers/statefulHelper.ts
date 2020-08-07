@@ -52,41 +52,30 @@ export default class StatefulHelper {
     }
 
     image(d) {
-        let value, property, label, img;
+        let imageKey = null
+        const label = d.labels[0]
+        const {images, imageMap} = this.state.options
 
-        if (this.state.options.images) {
-            const imagesForLabel = this.state.options.imageMap[d.labels[0]];
-
-            if (imagesForLabel) {
-                let imgLevel = 0;
-
-                for (let i = 0; i < imagesForLabel.length; i++) {
-                    const labelPropertyValue = imagesForLabel[i].split('|');
-
-                    switch (labelPropertyValue.length) {
-                        case 3:
-                            value = labelPropertyValue[2];
-                        /* falls through */
-                        case 2:
-                            property = labelPropertyValue[1];
-                        /* falls through */
-                        case 1:
-                            label = labelPropertyValue[0];
-                    }
-
-                    if (d.labels[0] === label &&
-                        (!property || d.properties[property] !== undefined) &&
-                        (!value || d.properties[property] === value)) {
-                        if (labelPropertyValue.length > imgLevel) {
-                            img = this.state.options.images[imagesForLabel[i]];
-                            imgLevel = labelPropertyValue.length;
+        if (images && label in images) {
+            const imageForLabel = images[label]
+            if (imageForLabel instanceof Object) {
+                imageKey = imageForLabel['defaultImage']
+                if ('properties' in imageForLabel) {
+                    imageForLabel['properties'].forEach(({ name, value, image }) => {
+                        if (name in d.properties && d.properties[name] === value) {
+                            imageKey = image
+                            return
                         }
-                    }
+                    })
                 }
             }
+
+            imageKey = imageKey ?? imageForLabel
+            const imageCode = imageMap[imageKey]
+            return imageCode ? imageCode : null
         }
 
-        return img;
+        return null;
     }
 
     private static stickNode(d) {

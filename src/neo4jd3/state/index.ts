@@ -1,5 +1,4 @@
 import colors from "../../data/colors";
-import fontAwesomeIcons from "../../data/icons";
 
 export default class NetworkState {
     container;
@@ -33,7 +32,7 @@ export default class NetworkState {
         arrowSize: 4,
         colors: colors,
         highlight: undefined,
-        iconMap: fontAwesomeIcons,
+        iconMap: {},
         icons: undefined,
         imageMap: {},
         pictograms: {},

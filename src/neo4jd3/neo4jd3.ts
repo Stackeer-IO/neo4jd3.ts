@@ -60,9 +60,6 @@ export default class Neo4jd3 {
     private initOptions(options: any) {
         merge(this.state.options, options);
 
-        this.initIconMap();
-        this.initImageMap();
-
         if (this.state.options.icons) {
             this.state.options.showIcons = true;
         }
@@ -123,37 +120,19 @@ export default class Neo4jd3 {
         }
     }
 
-    private initIconMap() {
-        Object.keys(this.state.options.iconMap).forEach(iconMapKey => {
-            const keys = iconMapKey.split(',');
-            const value = this.state.options.iconMap[iconMapKey];
-
-            keys.forEach(key => {
-                this.state.options.iconMap[key] = value;
-            });
-        });
-    }
-
-    private initImageMap() {
-        Object.keys(this.state.options.images).forEach(key => {
-            const keys = key.split('|');
-            const tag = keys[0];
-
-            if (!this.state.options.imageMap[tag]) {
-                this.state.options.imageMap[tag] = [key];
-            } else {
-                this.state.options.imageMap[tag].push(key);
-            }
-        })
-    }
-
     private initSimulation() {
         return d3.forceSimulation()
-            .force('collide', d3.forceCollide().radius(() => this.state.options.minCollision)
+            .force('collide', d3
+                .forceCollide()
+                .radius(() => this.state.options.minCollision)
                 .iterations(2))
-            .force('charge', d3.forceManyBody())
-            .force('link', d3.forceLink().id(d => (d as any).id))
-            .force('center', d3.forceCenter(
+            .force('charge', d3
+                .forceManyBody())
+            .force('link', d3
+                .forceLink()
+                .id(d => (d as any).id))
+            .force('center', d3
+                .forceCenter(
                 this.state.svg.node().parentElement.parentElement.clientWidth / 2,
                 this.state.svg.node().parentElement.parentElement.clientHeight / 2
             ))

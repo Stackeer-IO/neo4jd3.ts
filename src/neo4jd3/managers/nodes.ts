@@ -146,26 +146,30 @@ export default class NodesManager {
     }
 
     private appendTextToNode(node) {
-        return node.append('text')
+        return node
+            .append('text')
             .attr('class', d => `text${this.helper.icon(d) ? ' icon' : ''}`)
             .attr('fill', '#ffffff')
-            .attr('font-size', d => this.helper.icon(d) ? `${this.state.options.nodeRadius}px` : '10px')
+            .attr('font-size', d => this.helper.icon(d) ? `${this.state.options.nodeRadius * 1.25}px` : '10px')
             .attr('pointer-events', 'none')
             .attr('text-anchor', 'middle')
-            .attr('y', d => this.helper.icon(d) ? `${Math.round(this.state.options.nodeRadius * 0.32)}px` : '4px')
+            .attr('alignment-baseline', 'central')
             .html(d => {
                 const _icon = this.helper.icon(d);
-                return _icon ? '&#x' + _icon : d.id;
+                return _icon ? `&#x${_icon}` : d.id;
             });
     }
 
     private appendImageToNode(node) {
-        return node.append('image')
-            .attr('height', d => this.helper.icon(d) ? '24px' : '30px')
-            .attr('x', d => this.helper.icon(d) ? '5px' : '-15px')
-            .attr('xlink:href', d => this.helper.image(d))
-            .attr('y', d => this.helper.icon(d) ? '5px' : '-16px')
-            .attr('width', d => this.helper.icon(d) ? '24px' : '30px');
+        return node
+            .append('text')
+            .attr('font-size', `${this.state.options.nodeRadius * .8}px`)
+            .attr('x', this.state.options.nodeRadius / 2.5)
+            .attr('y', this.state.options.nodeRadius)
+            .html(d => {
+                const _image = this.helper.image(d)
+                return _image ? `&#x${_image}` : null
+            })
     }
 
     private appendPictogramToNode(node) {
