@@ -98,15 +98,8 @@ export default class StatefulHelper {
     }
 
     classToColor(cls) {
-        let color = this.state.classes2colors[cls];
-
-        if (!color) {
-            color = this.state.options.colors[this.state.numClasses % this.state.options.colors.length];
-            this.state.classes2colors[cls] = color;
-            this.state.numClasses++;
-        }
-
-        return color;
+        let color = this.state.options.colors[cls];
+        return color ?? this.defaultColor()
     }
 
     classToDarkenColor(cls) {
@@ -114,7 +107,7 @@ export default class StatefulHelper {
     }
 
     defaultColor() {
-        return this.state.options.relationshipColor;
+        return this.state.options.defaultColor;
     }
 
     defaultDarkenColor() {

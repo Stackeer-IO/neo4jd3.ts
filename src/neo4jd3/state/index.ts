@@ -1,5 +1,3 @@
-import colors from "../../data/colors";
-
 export default class NetworkState {
     container;
     info;
@@ -21,16 +19,13 @@ export default class NetworkState {
     svgScale;
     svgTranslate;
 
-    classes2colors = {};
-
     justLoaded = false;
-    numClasses = 0;
 
     listeners: Map<string, Array<(any) => void>>;
 
     options: any = {
         arrowSize: 4,
-        colors: colors,
+        colors: {},
         highlight: undefined,
         iconMap: {},
         icons: undefined,
@@ -42,7 +37,7 @@ export default class NetworkState {
         neo4jDataUrl: undefined,
         nodeOutlineFillColor: undefined,
         nodeRadius: 25,
-        relationshipColor: '#a5abb6',
+        defaultColor: '#a5abb6',
         zoomFit: false,
         useId: true,
     };
