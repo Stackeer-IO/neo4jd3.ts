@@ -35,8 +35,6 @@ export default class NetworkState {
         iconMap: {},
         icons: undefined,
         imageMap: {},
-        pictograms: {},
-        pictogramsLook: {},
         images: undefined,
         infoPanel: true,
         minCollision: undefined,

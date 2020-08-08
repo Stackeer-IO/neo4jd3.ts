@@ -37,10 +37,6 @@ export default class NodesManager {
             this.appendImageToNode(node);
         }
 
-        if (this.state.options.pictograms) {
-            this.appendPictogramToNode(node);
-        }
-
         return node;
     }
 
@@ -170,35 +166,5 @@ export default class NodesManager {
                 const _image = this.helper.image(d)
                 return _image ? `&#x${_image}` : null
             })
-    }
-
-    private appendPictogramToNode(node) {
-        const options = this.state.options;
-
-        const startX = this.state.options.pictogramsLook?.x || 5;
-        const startY = this.state.options.pictogramsLook?.y || 0;
-        const pictogramWidth = this.state.options.pictogramsLook?.width || 24;
-        const pictogramHeight = this.state.options.pictogramsLook?.height || 24;
-        const offset = this.state.options.pictogramsLook?.offset || 0;
-
-        return node.each(function (d) {
-            if (!d.hasOwnProperty("pictograms")) return;
-
-            const pictograms: string[] = d.pictograms;
-            const startPosition = startY + (-pictograms.length * (pictogramWidth + offset) + offset) / 2;
-
-            pictograms.forEach((v, i) => {
-                d3.select(this).append('image')
-                    .attr('height', _ => `${pictogramHeight}px`)
-                    .attr('x', `${startX}px`)
-                    .attr('xlink:href', _ => {
-                        return options.pictograms[v] || '';
-                    })
-                    .attr('y', _ =>
-                        `${startPosition + i * pictogramHeight + (i == 0 ? 0 : offset)}px`
-                    )
-                    .attr('width', _ => `${pictogramWidth}px`);
-            });
-        });
     }
 }
