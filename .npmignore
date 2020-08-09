@@ -1,4 +1,6 @@
-tsconfig.json
-src
-examples
 .idea
+.github
+analysis
+examples
+src
+tsconfig.json
