@@ -61,7 +61,7 @@ export default class StatefulHelper {
             if (imageForLabel instanceof Object) {
                 imageKey = imageForLabel['defaultImage']
                 if ('properties' in imageForLabel) {
-                    imageForLabel['properties'].forEach(({ name, value, image }) => {
+                    imageForLabel['properties'].forEach(({name, value, image}) => {
                         if (name in d.properties && d.properties[name] === value) {
                             imageKey = image
                             return
@@ -84,17 +84,22 @@ export default class StatefulHelper {
     }
 
     toString(d) {
-        let s = d.labels ? d.labels[0] : d.type;
+        const label = d.labels ? d.labels[0] : d.type;
+        const properties = Object
+            .entries(d.properties)
+            .map(([prop, value]) => `${prop}: ${JSON.stringify(value)}`)
 
-        s += ' (<id>: ' + d.id;
+        const addInfo = []
+        if (this.state.options.useId) {
+            addInfo.push(`<id>: ${d.id}`)
+        }
+        if (properties.length > 0) {
+            addInfo.push(properties.join(', '))
+        }
 
-        Object.keys(d.properties).forEach(function (property) {
-            s += ', ' + property + ': ' + JSON.stringify(d.properties[property]);
-        });
-
-        s += ')';
-
-        return s;
+        return addInfo.length
+            ? `${label} (${addInfo.join(' ')})`
+            : label
     }
 
     classToColor(cls) {
