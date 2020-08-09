@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "bugs": {},
-  "homepage": "https://github.com/Stackeer-IO/neo4jd3.ts",
+  "homepage": "https://github.com/stackeer-io/neo4jd3.ts",
   "scripts": {
     "build": "tsc"
   },
@@ -16,12 +16,12 @@
     "typescript"
   ],
   "author": {
-    "name": "Anton Zavyalov <megadeathlightsaber@gmail.com>",
-    "url": "https://github.com/andiogenes"
+    "name": "Stackeer.io <stackeer@stackeer.io>",
+    "url": "https://github.com/stackeer-io"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Stackeer-IO/neo4jd3.ts.git"
+    "url": "https://github.com/stackeer-io/neo4jd3.ts.git"
   },
   "license": "MIT",
   "dependencies": {
