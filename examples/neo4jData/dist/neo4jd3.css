@@ -1,25 +1,19 @@
-* {
-    margin: 0;
-    padding: 0;
+.neo4jd3 {
+    cursor: move;
 }
 
-body {
-    font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 20px;
-}
-
-.neo4jd3-graph {
+.neo4jd3 .neo4jd3-graph {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-.neo4jd3-info {
+.neo4jd3 .neo4jd3-info {
     font-size: 16px;
     padding: 10px;
     position: absolute;
 }
 
-.neo4jd3-info a {
+.neo4jd3 .neo4jd3-info a {
     border: 1px solid;
     display: inline-block;
     font-size: 14px;
@@ -29,29 +23,29 @@ body {
     padding: 6px 12px;
 }
 
-.neo4jd3-info a.class {
+.neo4jd3 .neo4jd3-info a.class {
     color: white;
 }
 
-.neo4jd3-info a.property {
+.neo4jd3 .neo4jd3-info a.property {
     background-color: #fff;
     border-color: #ccc;
     color: #333;
 }
 
-.neo4jd3-info a.btn {
+.neo4jd3 .neo4jd3-info a.btn {
     margin-left: 5px;
     margin-top: 5px;
     opacity: 1;
 }
 
-.neo4jd3-info a.info {
+.neo4jd3 .neo4jd3-info a.info {
     background-color: #a5abb6;
     border: 1px solid #9aa1ac;
     color: white;
 }
 
-.node.node-highlighted .ring {
+.neo4jd3 .neo4jd3-graph .node.node-highlighted .ring {
     -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';
     filter: alpha(opacity=50);
     opacity: .5;
@@ -59,7 +53,7 @@ body {
     stroke-width: 12px;
 }
 
-.node .outline {
+.neo4jd3 .neo4jd3-graph .node .outline {
     cursor: pointer;
     fill: #a5abb6;
     pointer-events: all;
@@ -67,7 +61,7 @@ body {
     stroke-width: 2px;
 }
 
-.node .ring {
+.neo4jd3 .neo4jd3-graph .node .ring {
     fill: none;
     -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
     filter: alpha(opacity=0);
@@ -76,30 +70,30 @@ body {
     stroke-width: 8px;
 }
 
-.node .text.icon {
-    font-family: FontAwesome, serif;
+.neo4jd3 .neo4jd3-graph .node .text.icon {
+    font-family: Material Design Icons, serif;
 }
 
-.node.selected .ring,
-.node:hover .ring {
+.neo4jd3 .neo4jd3-graph .node.selected .ring,
+.neo4jd3 .neo4jd3-graph .node:hover .ring {
     -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=30)';
     filter: alpha(opacity=30);
     opacity: .3;
 }
 
-.relationship {
+.neo4jd3 .neo4jd3-graph .relationship {
     cursor: default;
 }
 
-.relationship line {
+.neo4jd3 .neo4jd3-graph .relationship line {
     stroke: #aaa;
 }
 
-.relationship .outline {
+.neo4jd3 .neo4jd3-graph .relationship .outline {
     cursor: default;
 }
 
-.relationship .overlay {
+.neo4jd3 .neo4jd3-graph .relationship .overlay {
     cursor: default;
     fill: #6ac6ff;
     -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
@@ -107,17 +101,13 @@ body {
     opacity: 0;
 }
 
-.relationship text {
+.neo4jd3 .neo4jd3-graph .relationship text {
     cursor: default;
 }
 
-.relationship.selected .overlay,
-.relationship:hover .overlay {
+.neo4jd3 .neo4jd3-graph .relationship.selected .overlay,
+.neo4jd3 .neo4jd3-graph .relationship:hover .overlay {
     -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=30)';
     filter: alpha(opacity=30);
     opacity: .3;
-}
-
-svg {
-    cursor: move;
 }
