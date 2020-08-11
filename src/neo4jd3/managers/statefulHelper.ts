@@ -52,27 +52,29 @@ export default class StatefulHelper {
     }
 
     image(d) {
-        let imageKey = null
-        const label = d.labels[0]
-        const {images, imageMap} = this.state.options
+        let imageKey = null;
+        const labels = d.labels ?? [];
+        const {images, imageMap} = this.state.options;
 
-        if (images && label in images) {
-            const imageForLabel = images[label]
-            if (imageForLabel instanceof Object) {
-                imageKey = imageForLabel['defaultImage']
-                if ('properties' in imageForLabel) {
-                    imageForLabel['properties'].forEach(({name, value, image}) => {
-                        if (name in d.properties && d.properties[name] === value) {
-                            imageKey = image
-                            return
-                        }
-                    })
+        for (const label of labels) {
+            if (images && label in images) {
+                const imageForLabel = images[label]
+                if (imageForLabel instanceof Object) {
+                    imageKey = imageForLabel['defaultImage']
+                    if ('properties' in imageForLabel) {
+                        imageForLabel['properties'].forEach(({name, value, image}) => {
+                            if (name in d.properties && d.properties[name] === value) {
+                                imageKey = image
+                                return
+                            }
+                        })
+                    }
                 }
-            }
 
-            imageKey = imageKey ?? imageForLabel
-            const imageCode = imageMap[imageKey]
-            return imageCode ? imageCode : null
+                imageKey = imageKey ?? imageForLabel
+                const imageCode = imageMap[imageKey]
+                return imageCode ? imageCode : null
+            }
         }
 
         return null;
